@@ -1,0 +1,23 @@
+[Unit]
+Description=TokenWatcher (Solana token watcher)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/tokenwatcher
+ExecStart=/opt/tokenwatcher/venv/bin/python /opt/tokenwatcher/tokenwatcher.py
+Restart=always
+RestartSec=3
+Environment=TELEGRAM_BOT_TOKEN=xxxxx:yyyyy
+Environment=TELEGRAM_CHAT_ID=123456789
+Environment=HELIUS_API_KEY=xxxxx
+Environment=TOKEN_MINT=YourSolanaTokenMintAddressHere
+Environment=TOKEN_DECIMALS=9
+Environment=THRESHOLD=30000
+Environment=PRICE_ALERT_PCT=5
+Environment=PRICE_POLL=60
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
